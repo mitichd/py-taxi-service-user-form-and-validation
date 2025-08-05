@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
 from taxi.models import Driver, Car
@@ -54,7 +53,7 @@ class DriverLicenseUpdateForm(LicenseValidationMixin, forms.ModelForm):
 
 class CarForm(forms.ModelForm):
     drivers = forms.ModelMultipleChoiceField(
-        queryset=get_user_model().objects.all(),
+        queryset=Driver.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
